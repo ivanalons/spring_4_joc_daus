@@ -9,6 +9,9 @@ INSERT INTO PLAYERS(name,register_date) VALUES ('Jugador 4',NOW());
 INSERT INTO PLAYERS(name,register_date) VALUES ('Jugador 5',NOW());
 INSERT INTO PLAYERS(register_date) VALUES (NOW());
 
+INSERT INTO GAMES(id,date) VALUES (1,NOW());
+INSERT INTO GAMES(id,date) VALUES (2,NOW());
+
 INSERT INTO GAMES_PLAYERS(games_id,players_id) VALUES (1,1);
 INSERT INTO GAMES_PLAYERS(games_id,players_id) VALUES (1,2);
 INSERT INTO GAMES_PLAYERS(games_id,players_id) VALUES (1,3);
