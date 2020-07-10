@@ -8,10 +8,10 @@ public interface ITossService {
 
 	public Toss createToss(Long gameId, Long playerId);
 	
-	public List<Toss> listAllToss();
+	public List<Toss> listAllTosses();
 	
-	public List<Toss> listTossByGame(Long gameId);
+	public List<Toss> listTossesByGame(Long gameId);
 	
-	public List<Toss> listTossByPlayer(Long gameId);
+	public List<Toss> listTossesByPlayer(Long gameId);
 	
 }

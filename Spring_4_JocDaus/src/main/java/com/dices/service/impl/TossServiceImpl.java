@@ -1,5 +1,6 @@
 package com.dices.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class TossServiceImpl implements ITossService{
 	
 	@Autowired
 	IDiceDAO iDiceDAO;
+	
+	@Autowired
+	GamePlayersServiceImpl gamePlayersServiceImpl;
 	
 	@Override
 	public Toss createToss(Long gameId, Long playerId) {
@@ -78,21 +82,36 @@ public class TossServiceImpl implements ITossService{
 	}
 	
 	@Override
-	public List<Toss> listAllToss() {
+	public List<Toss> listAllTosses() {
 
 		return iTossDAO.findAll();
 	}
 
 	@Override
-	public List<Toss> listTossByGame(Long gameId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Toss> listTossesByGame(Long gameId) {
+		List<GamePlayers> gamePlayersList = gamePlayersServiceImpl.listGamePlayersByGame(gameId);
+		
+		List<Toss> listTossesByGame = new ArrayList<>();
+		
+		for (GamePlayers gp : gamePlayersList) {
+			listTossesByGame.addAll(gp.getTossList());
+		}
+		
+		return listTossesByGame;
 	}
 
 	@Override
-	public List<Toss> listTossByPlayer(Long gameId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Toss> listTossesByPlayer(Long playerId) {
+
+		List<GamePlayers> gamePlayersList = gamePlayersServiceImpl.listGamePlayersByPlayer(playerId);
+		
+		List<Toss> listTossesByPlayer = new ArrayList<>();
+		
+		for (GamePlayers gp : gamePlayersList) {
+			listTossesByPlayer.addAll(gp.getTossList());
+		}
+		
+		return listTossesByPlayer;
 	}
 
 }

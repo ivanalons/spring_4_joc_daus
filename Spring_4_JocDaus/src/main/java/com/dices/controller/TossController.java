@@ -31,7 +31,7 @@ public class TossController {
 	@GetMapping("/")
 	public List<Toss> listAllToss() {
 		
-		return tossServiceImpl.listAllToss();
+		return tossServiceImpl.listAllTosses();
 		
 	}
 	
@@ -39,6 +39,21 @@ public class TossController {
 	public void deleteAllPlayerTossesByGame(@PathVariable(name="id1") Long gameId, 
 											@PathVariable(name="id2")Long playerId) {
 		tossServiceImpl.deleteAllPlayerTossesByGame(gameId, playerId);
+		
+	}
+	
+	
+	@GetMapping("/games/{id}/tosses")
+	public List<Toss> listTossesByGame(@PathVariable(name="id") Long gameId) {
+		
+		return tossServiceImpl.listTossesByGame(gameId);
+		
+	}
+	
+	@GetMapping("/players/{id}/tosses")
+	public List<Toss> listTossesByPlayer(@PathVariable(name="id") Long playerId) {
+		
+		return tossServiceImpl.listTossesByPlayer(playerId);
 		
 	}
 	
