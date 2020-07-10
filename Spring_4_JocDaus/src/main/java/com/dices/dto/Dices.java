@@ -75,4 +75,9 @@ public class Dices {
 	public void setToss(Toss toss) {
 		this.toss = toss;
 	}
+	
+	public String toString() {
+		String output = "Dices [dau1 = "+ this.dice1+", dau2 = "+this.dice2+"]";
+		return output;
+	}
 }

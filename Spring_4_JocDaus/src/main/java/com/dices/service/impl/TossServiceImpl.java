@@ -38,9 +38,10 @@ public class TossServiceImpl implements ITossService{
 		toss.setGamePlayers(gamePlayers);
 		
 		Dices dices = this.tossDices();
-		toss.setDices(tossDices());
+		toss.setDices(dices);
 		
 		int sum = dices.getDice1() + dices.getDice2();
+		//System.out.println(dices.toString()+ " SUMA = "+sum);
 		if (sum == 7) {
 			toss.setWonToss(true);
 		}
