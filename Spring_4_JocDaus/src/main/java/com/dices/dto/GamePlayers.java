@@ -52,10 +52,10 @@ public class GamePlayers{
 	
 	@OneToMany
 	@JoinColumns({
-	      @JoinColumn(name = "games_id"),
-	      @JoinColumn(name = "players_id")
+	      @JoinColumn(name = "gp_games_id"),
+	      @JoinColumn(name = "gp_players_id")
 	})	
-	private List<Toss> toss;
+	private List<Toss> tossList;
 	
 	public GamePlayers() {
 		
@@ -104,12 +104,12 @@ public class GamePlayers{
 
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Toss")
-	public List<Toss> getToss() {
-		return toss;
+	public List<Toss> getTossList() {
+		return tossList;
 	}
 
-	public void setToss(List<Toss> toss) {
-		this.toss = toss;
+	public void setTossList(List<Toss> toss) {
+		this.tossList = toss;
 	}
 	
 	

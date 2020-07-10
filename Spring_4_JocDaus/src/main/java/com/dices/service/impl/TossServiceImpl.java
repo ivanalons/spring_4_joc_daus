@@ -65,6 +65,18 @@ public class TossServiceImpl implements ITossService{
 		return newDice;
 	}
 	
+	public void deleteAllPlayerTossesByGame(Long gameId, Long playerId) {
+		
+		GamePlayersId id = new GamePlayersId(gameId,playerId);
+		
+		GamePlayers gamePlayers = iGamePlayersDAO.findById(id).get();
+		
+		for(Toss toss : gamePlayers.getTossList()) {
+			iTossDAO.deleteById(toss.getId());
+		}
+		
+	}
+	
 	@Override
 	public List<Toss> listAllToss() {
 

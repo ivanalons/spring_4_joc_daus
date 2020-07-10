@@ -3,6 +3,7 @@ package com.dices.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,13 @@ public class TossController {
 	public List<Toss> listAllToss() {
 		
 		return tossServiceImpl.listAllToss();
+		
+	}
+	
+	@DeleteMapping("/games/{id1}/players/{id2}")
+	public void deleteAllPlayerTossesByGame(@PathVariable(name="id1") Long gameId, 
+											@PathVariable(name="id2")Long playerId) {
+		tossServiceImpl.deleteAllPlayerTossesByGame(gameId, playerId);
 		
 	}
 	
