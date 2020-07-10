@@ -42,6 +42,9 @@ public class GamePlayers{
 	}
 
 	public GamePlayers(GamePlayersId gamePlayersId, boolean wonGame) { //TODO
+		this.gamePlayersId = new GamePlayersId();
+		this.gamePlayersId.setGameId(gamePlayersId.getGameId());
+		this.gamePlayersId.setPlayerId(gamePlayersId.getPlayerId());
 		this.wonGame = wonGame;
 	}
 

@@ -13,9 +13,9 @@ public interface IGamePlayersService {
 	
 	public List<GamePlayers> listGamePlayersByGame(Long idGame);
 	
+	public List<GamePlayers> listGamePlayersByPlayer(Long playerId);
+	
 	public GamePlayers setGameWinner(Long idGame, Long idPlayer);
 	
-	public List<Player> listPlayersByGame(Long idGame);
-
 	
 }

@@ -53,20 +53,33 @@ public class GamePlayersServiceImpl implements IGamePlayersService{
 
 	@Override
 	public GamePlayers setGameWinner(Long idGame, Long idPlayer) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		GamePlayersId gamePlayersId = new GamePlayersId();
+		gamePlayersId.setGameId(idGame);
+		gamePlayersId.setPlayerId(idPlayer);
+		
+		GamePlayers gamePlayers = iGamePlayersDAO.findById(gamePlayersId).get();
+		
+		gamePlayers.setWonGame(true);
+		
+		return iGamePlayersDAO.save(gamePlayers);
 	}
 
-	@Override
-	public List<Player> listPlayersByGame(Long idGame) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<GamePlayers> listAllGamePlayers() {
 		
 		return iGamePlayersDAO.findAll();
+	}
+
+	@Override
+	public List<GamePlayers> listGamePlayersByPlayer(Long playerId) {
+
+		Player player = iPlayerDAO.findById(playerId).get();
+
+		List<GamePlayers> gamePlayers = player.getGamePlayers();
+		
+		return gamePlayers;
 	}
 
 }
