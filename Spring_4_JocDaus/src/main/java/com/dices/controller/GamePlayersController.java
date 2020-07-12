@@ -1,5 +1,6 @@
 package com.dices.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dices.dto.GamePlayers;
 import com.dices.service.impl.GamePlayersServiceImpl;
+import com.dices.view.GamePlayersView;
 
 @RestController
 @RequestMapping("/games_players/")
@@ -55,6 +57,26 @@ public class GamePlayersController {
 		
 		return gamePlayersServiceImpl.setGameWinner(gameId, playerId);
 		
+	}
+	
+	
+	// Mapear la lista de objetos DTOs Toss con la definición de la BBDD en una lista de 
+	// objetos TossView con una definicion JSON mas sencilla para enviar al FrontEnd mediante
+	// REST
+	private List<GamePlayersView> simplifyJSONResponse(List<GamePlayers> listGamePlayers){
+		
+		List<GamePlayersView> listGamePlayersView = new ArrayList<>();
+		
+		for (GamePlayers gamePlayers : listGamePlayers) {
+			GamePlayersView view = new GamePlayersView(gamePlayers);
+			listGamePlayersView.add(view);
+		}
+		
+		return listGamePlayersView;
+	}
+	
+	private GamePlayersView simplifyJSONResponse(GamePlayers gamePlayers) {
+		return new GamePlayersView(gamePlayers);
 	}
 	
 }

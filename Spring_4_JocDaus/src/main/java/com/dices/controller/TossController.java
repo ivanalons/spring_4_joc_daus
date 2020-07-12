@@ -74,4 +74,8 @@ public class TossController {
 		
 		return listTossesView;
 	}
+	
+	private TossView simplifyJSONResponse(Toss toss) {
+		return new TossView(toss);
+	}
 }

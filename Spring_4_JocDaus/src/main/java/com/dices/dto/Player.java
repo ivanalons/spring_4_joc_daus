@@ -55,6 +55,7 @@ public class Player {
 	}
 
 	public String getName() {
+		if(name==null) return "ANONYMOUS";
 		return name;
 	}
 
