@@ -65,8 +65,8 @@ public class GamePlayersController {
 	}
 	
 	
-	// Mapear la lista de objetos DTOs Toss con la definición de la BBDD en una lista de 
-	// objetos TossView con una definicion JSON mas sencilla para enviar al FrontEnd mediante
+	// Mapear la lista de objetos DTOs GamePlayers con la definición de la BBDD en una lista de 
+	// objetos GamePlayersView con una definicion JSON mas sencilla para enviar al FrontEnd mediante
 	// REST
 	private List<GamePlayersView> simplifyJSONResponse(List<GamePlayers> listGamePlayers){
 		

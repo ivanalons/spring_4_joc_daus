@@ -60,7 +60,7 @@ public class TossServiceImpl implements ITossService{
 		
 	}
 
-	// Crea una nou resultat de daus i el guarda a la taula DICES i el retorna en objecte Dices
+	// Crea una nou resultat de daus, el guarda a la taula DICES i el retorna en un objecte Dices
 	private Dices tossDices() {
 		
 		Dices dices = new Dices();
@@ -83,7 +83,12 @@ public class TossServiceImpl implements ITossService{
 		GamePlayers gamePlayers = iGamePlayersDAO.findById(id).get();
 		
 		for(Toss toss : gamePlayers.getTossList()) {
+			
+			Dices dices = toss.getDices();
+			
 			iTossDAO.deleteById(toss.getId());
+			iDiceDAO.deleteById(dices.getId());
+
 		}
 		
 	}

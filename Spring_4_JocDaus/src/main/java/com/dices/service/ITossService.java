@@ -25,4 +25,7 @@ public interface ITossService {
 	//Retorna totes les tirades de daus del jugador amb id "playerId" a totes les seves partides
 	public List<Toss> listTossesByPlayer(Long playerId);
 	
+	//Esborra totes les tirades de daus del jugador amb id "playerId" a la partida amb id "gameId"
+	public void deleteAllPlayerTossesByGame(Long gameId, Long playerId);
+
 }
