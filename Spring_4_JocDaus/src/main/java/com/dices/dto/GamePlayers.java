@@ -28,17 +28,17 @@ public class GamePlayers{
 	*/
 	
 	@EmbeddedId
-    private GamePlayersId gamePlayersId;
+    private GamePlayersId gamePlayersId; //Primary Key composta per més d'un camp
 
 	@Column(name="won_game", nullable = false, columnDefinition = "TINYINT", length = 1)
 	private boolean wonGame;
 	
-	@MapsId("gameId")
+	@MapsId("gameId") //Referencia la Primary Key de l'atribut gamePlayersId.gameId
 	@ManyToOne
 	@JoinColumn(name="games_id")
 	private Game game;
 	
-	@MapsId("playerId")
+	@MapsId("playerId") //Referencia la Primary Key de l'atribut gamePlayersId.playerId
 	@ManyToOne
 	@JoinColumn(name="players_id")
 	private Player player;
@@ -50,6 +50,8 @@ public class GamePlayers{
 	      @JoinColumn(name = "players_id", referencedColumnName = "gp_players_id")
 	})	*/
 	
+	// La Foreign Key de la taula toss(Toss) es composta perque fa referencia a la taula 
+	// games_players (GamePlayers) que te una Primary Key composta
 	@OneToMany
 	@JoinColumns({
 	      @JoinColumn(name = "gp_games_id"),

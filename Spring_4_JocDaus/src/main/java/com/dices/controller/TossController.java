@@ -23,17 +23,20 @@ public class TossController {
 	TossServiceImpl tossServiceImpl;
 	
 	@PostMapping("/games/{id1}/players/{id2}")
-	public Toss createToss(@PathVariable(name="id1") Long gameId, 
+	public TossView createToss(@PathVariable(name="id1") Long gameId, 
 							@PathVariable(name="id2")Long playerId) {
 		
-		return tossServiceImpl.createToss(gameId, playerId);
+		Toss toss = tossServiceImpl.createToss(gameId, playerId);
 		
+		return simplifyJSONResponse(toss);
 	}
 
 	@GetMapping("/")
-	public List<Toss> listAllToss() {
+	public List<TossView> listAllToss() {
 		
-		return tossServiceImpl.listAllTosses();
+		List<Toss> listTosses = tossServiceImpl.listAllTosses();
+		
+		return simplifyJSONResponse(listTosses);
 		
 	}
 	
@@ -46,10 +49,11 @@ public class TossController {
 	
 	
 	@GetMapping("/games/{id}/tosses")
-	public List<Toss> listTossesByGame(@PathVariable(name="id") Long gameId) {
+	public List<TossView> listTossesByGame(@PathVariable(name="id") Long gameId) {
 		
-		return tossServiceImpl.listTossesByGame(gameId);
+		List<Toss> listTosses = tossServiceImpl.listTossesByGame(gameId);
 		
+		return simplifyJSONResponse(listTosses);
 	}
 	
 	@GetMapping("/players/{id}/tosses")

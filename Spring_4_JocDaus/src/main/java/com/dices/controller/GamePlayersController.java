@@ -23,40 +23,45 @@ public class GamePlayersController {
 	GamePlayersServiceImpl gamePlayersServiceImpl; 
 	
 	@GetMapping("/")
-	public List<GamePlayers> listAllGamePlayers(){
+	public List<GamePlayersView> listAllGamePlayers(){
 		
-		return gamePlayersServiceImpl.listAllGamePlayers();
+		List<GamePlayers> listGamePlayers = gamePlayersServiceImpl.listAllGamePlayers();
 		
+		return simplifyJSONResponse(listGamePlayers);
 	}
 	
 	@GetMapping("/games/{id}/players")
-	public List<GamePlayers> listGamePlayersByGame(@PathVariable(name="id") Long gameId){
+	public List<GamePlayersView> listGamePlayersByGame(@PathVariable(name="id") Long gameId){
 		
-		return gamePlayersServiceImpl.listGamePlayersByGame(gameId);
+		List<GamePlayers> listGamePlayers = gamePlayersServiceImpl.listGamePlayersByGame(gameId);
 		
+		return simplifyJSONResponse(listGamePlayers);
 	}
 	
 	@PostMapping("/games/{id1}/players/{id2}")
-	public GamePlayers addPlayerToGame(@PathVariable(name="id1") Long gameId,
+	public GamePlayersView addPlayerToGame(@PathVariable(name="id1") Long gameId,
 									   @PathVariable(name="id2") Long playerId){
 		
-		return gamePlayersServiceImpl.addPlayerToGame(gameId,playerId);
+		GamePlayers gamePlayers = gamePlayersServiceImpl.addPlayerToGame(gameId,playerId);
 		
+		return simplifyJSONResponse(gamePlayers);
 	}
 	
 	@GetMapping("/players/{id}/games")
-	public List<GamePlayers> listGamePlayersByPlayer(@PathVariable(name="id") Long playerId){
+	public List<GamePlayersView> listGamePlayersByPlayer(@PathVariable(name="id") Long playerId){
 		
-		return gamePlayersServiceImpl.listGamePlayersByPlayer(playerId);
+		List<GamePlayers> listGamePlayers = gamePlayersServiceImpl.listGamePlayersByPlayer(playerId);
 		
+		return simplifyJSONResponse(listGamePlayers);
 	}
 	
 	@PutMapping("/games/{id1}/players/{id2}/winner")
-	public GamePlayers setGameWinner(@PathVariable(name="id1") Long gameId,
+	public GamePlayersView setGameWinner(@PathVariable(name="id1") Long gameId,
 										   @PathVariable(name="id2") Long playerId){
 		
-		return gamePlayersServiceImpl.setGameWinner(gameId, playerId);
+		GamePlayers gamePlayers = gamePlayersServiceImpl.setGameWinner(gameId, playerId);
 		
+		return simplifyJSONResponse(gamePlayers);
 	}
 	
 	

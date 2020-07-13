@@ -26,6 +26,8 @@ public class Toss {
 	@Column(name="won_toss", nullable = false, columnDefinition = "TINYINT", length = 1)
 	private boolean wonToss;
 	
+	// La Foreign Key de la taula toss(Toss) es composta perque fa referencia a la taula 
+	// games_players (GamePlayers) que te una Primary Key composta	
 	@ManyToOne
 	@JoinColumns({
 	      @JoinColumn(name = "gp_games_id", referencedColumnName = "games_id"),

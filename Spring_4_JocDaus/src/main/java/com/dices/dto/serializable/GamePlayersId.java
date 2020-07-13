@@ -5,6 +5,13 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+/**
+ * Classe per encapsular la PRIMARY KEY composta de la taula games_players (GamePlayers)
+ * Esta composta per una foreign key a la taula games i per altra foreign key a la taula players
+ * 
+ * @author Ivan
+ *
+ */
 @Embeddable
 public class GamePlayersId implements Serializable{
 

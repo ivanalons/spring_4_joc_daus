@@ -31,9 +31,10 @@ public class StatisticsServiceImpl implements IStatisticsService{
 		
 		List<Player> playersList = iPlayerDAO.findAll();
 		
-		for( Player p : playersList) {
+		for( Player p : playersList) { //Es fa un recorregut de tots els jugadors del sistema
 			
-			PlayerView newPlayer = getPlayerStatistics(p);
+			//Es calcula el percentatge mig d'exit de cada jugador del sistema
+			PlayerView newPlayer = getPlayerStatistics(p); 
 			statisticsList.add(newPlayer);
 			
 		}
@@ -41,6 +42,8 @@ public class StatisticsServiceImpl implements IStatisticsService{
 		return statisticsList;
 	}
 	
+	// Retorna un objecte PlayerView que encapsula l'objecte Player passat per parametre i
+	// el percentatge mig d'exit de totes les seves tirades
 	private PlayerView getPlayerStatistics(Player p) {
 		Long playerId = p.getId();
 		
@@ -49,20 +52,24 @@ public class StatisticsServiceImpl implements IStatisticsService{
 		double tossesNumber = tossesList.size();
 		double winnerNumber = 0;
 		
-		for( Toss t : tossesList ) {
-			if(t.isWonToss()) winnerNumber++;
+		for( Toss t : tossesList ) { // es fa un recorregut de totes les tirades de daus del jugador
+			if(t.isWonToss()) winnerNumber++; //i es comptabilitza en numero de tirades guanyades
 		}
 		
 		double winrate = 0;
 		if (tossesNumber !=0 ) {
 			winrate = (winnerNumber / tossesNumber) * 100;
 		}
+		// winrate conte el percentatge entre 0% i 100% d'exit mig de totes les tirades de daus
+		// del jugador Player p
 		
 		PlayerView newPlayer = new PlayerView(p,winrate);
 		
 		return newPlayer;
 	}
 
+	// Agafa el llistat de jugadors amb el seu percentatge implementat al metode listPlayersStatistics
+	// i el retorna ordenat per percentatge
 	@Override
 	public List<PlayerView> listPlayersRanking() {
 		
@@ -80,8 +87,10 @@ public class StatisticsServiceImpl implements IStatisticsService{
 		int count = 0;
 		double sum = 0;
 		
+		// Es fa un recorregut dels jugadors i el seu percentatge d'exit i es calcula
+		// el percentatge mig global total del sistema
 		for ( PlayerView player : listPlayers ) {
-//			System.out.println("player "+count+": rate="+player.getSuccessAverageRate());
+			// System.out.println("player "+count+": rate="+player.getSuccessAverageRate());
 			sum += player.getSuccessAverageRate();
 			count++;
 		}

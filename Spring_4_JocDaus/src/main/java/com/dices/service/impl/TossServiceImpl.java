@@ -30,30 +30,37 @@ public class TossServiceImpl implements ITossService{
 	@Autowired
 	GamePlayersServiceImpl gamePlayersServiceImpl;
 	
+	//Realitza una nova tirada de daus del jugador amb id "playerId" a la partida amb id "gameId" 
 	@Override
 	public Toss createToss(Long gameId, Long playerId) {
 
+		// s'obte la instancia de la taula games_players a partir de la clau primaria composta
+		// games_id i players_id
 		GamePlayersId id = new GamePlayersId(gameId,playerId);
 		
 		GamePlayers gamePlayers = iGamePlayersDAO.findById(id).get();
 		
+		// es crea una nova instancia de la taula toss amb foreign key referenciant una instancia
+		// de la taula games_players
 		Toss toss = new Toss();
 		toss.setWonToss(false);
 		toss.setGamePlayers(gamePlayers);
 		
+		// s'afegeix la foreign key a la instancia de la taula dices
 		Dices dices = this.tossDices();
 		toss.setDices(dices);
 		
 		int sum = dices.getDice1() + dices.getDice2();
 		//System.out.println(dices.toString()+ " SUMA = "+sum);
 		if (sum == 7) {
-			toss.setWonToss(true);
+			toss.setWonToss(true); // la tirada s'ha guanyat si la suma dels daus es 7
 		}
 		
 		return iTossDAO.save(toss);
 		
 	}
 
+	// Crea una nou resultat de daus i el guarda a la taula DICES i el retorna en objecte Dices
 	private Dices tossDices() {
 		
 		Dices dices = new Dices();
